@@ -38,7 +38,8 @@ def main():
     # Create the EventHandler and pass it your bot's token.
     load_dotenv()
     bot_token = os.getenv('bot_token')
-    updater = Updater(bot_token)
+    proxy = os.getenv('http_proxy')
+    updater = Updater(bot_token, rquest_kwargs={'proxy_url': proxy})
 
     # Get the dispatcher to register handlers
     dp = updater.dispatcher
