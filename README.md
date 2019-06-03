@@ -8,7 +8,7 @@ You can easily make modifications and deploy it on your personal or open server 
 
 You can get chatting expirience by messaging my telegram bot - @serg4356_speach_recognizing_bot, or [here](https://vk.com/club182829172). Or simply look at gif below:  
 
-![chatting-gif](https://gph.is/g/aKnQvVl)
+![chatting-gif](https://media.giphy.com/media/YOTFIF9MhyGt01PoCx/giphy.gif)
 
 ### How to install
 
