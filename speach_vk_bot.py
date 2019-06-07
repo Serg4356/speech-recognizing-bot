@@ -6,6 +6,7 @@ import random
 import telegram
 import requests
 import argparse
+from pprint import pprint
 from vk_api.longpoll import VkLongPoll, VkEventType
 from logger_bot import MyLogsHandler, create_logger_bot, proxy_parser
 
@@ -24,7 +25,10 @@ def echo(event, vk_api):
         'lang': 'ru',
     }
     response = requests.get(url, headers=headers, params=params)
+    response.raise_for_status()
     dialog_flow_response = response.json()
+    if not dialog_flow_response['status']['errorType'] == 'succeess':
+        raise requests.exceptions.HTTPError(dialog_flow_response['status']['errorDetails'])
     if not dialog_flow_response['result']['metadata']['intentName'] == 'Default Fallback Intent':
         vk_api.messages.send(
                     user_id=event.user_id,

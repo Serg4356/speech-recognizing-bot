@@ -21,13 +21,16 @@ def speach(bot, update):
         'lang': 'ru',
     }
     response = requests.get(url, headers=headers, params=params)
+    response.raise_for_status()
     dialog_flow_response = response.json()
+    if not dialog_flow_response['status']['errorType'] == 'success':
+        raise requests.exceptions.HTTPError(dialog_flow_response['status']['errorType'])
     update.message.reply_text(dialog_flow_response['result']['fulfillment']['speech'])
 
 
 def error(bot, update, error):
     '''Log Errors caused by Updates.'''
-    logger.warning('Update "%s" caused error "%s"', update, error)
+    logger.error(error, exc_info=True)
 
 
 def main():
