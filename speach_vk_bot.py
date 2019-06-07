@@ -28,7 +28,7 @@ def echo(event, vk_api):
     response.raise_for_status()
     dialog_flow_response = response.json()
     if not dialog_flow_response['status']['errorType'] == 'succeess':
-        raise requests.exceptions.HTTPError(dialog_flow_response['status']['errorDetails'])
+        raise requests.exceptions.HTTPError(dialog_flow_response['status']['errorType'])
     if not dialog_flow_response['result']['metadata']['intentName'] == 'Default Fallback Intent':
         vk_api.messages.send(
                     user_id=event.user_id,
